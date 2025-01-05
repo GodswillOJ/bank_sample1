@@ -8,16 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown,faHandPointLeft
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { useMediaQuery, useTheme } from '@mui/material';
 import { BOX2, BOX3, BOX4, BOX5 } from "./logo";
 import Link from "next/link";
 
 library.add(faAngleDown); // Register the icon in the library
 
 const Main = () => {
-  const theme = useTheme();
+  // const theme = useTheme();
   const [isClient, setIsClient] = useState(false);
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md')); // Adjusted for small screens
 
   useEffect(() => {
     setIsClient(true);
@@ -32,54 +30,149 @@ const Main = () => {
   if (!isClient) return null; // Prevent server-side rendering issues
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-        display: "block",
-        paddingBottom: "4rem",
-        minHeight:isSmallScreen ? "120vh" : "100vh",
-        backgroundColor: "#fff"
-      }}
-    >
-      {/* Breadcrumbs Section */}
-      <Box className="breadcrumbs" sx={{ display: "flex", alignItems: "center", padding: "8px 16px", backgroundColor: "", borderRadius: 1 }}>
-        <div className="breadcrumbs__content">
-          <span property="itemListElement" typeof="ListItem">
-            <Link
-            property="item" typeof="WebPage" title="Go to Home." href="/" className="home">
-              <span 
-                style={{
-                  color: "#2563eb",
-                }}
-              property="name">Home</span>
-            </Link>
+<Box
+  sx={{
+    position: "relative",
+    display: "block",
+    paddingBottom: "4rem",
+    minHeight: { xs: "150vh", sm: "120vh", md: "100vh" },
+    backgroundColor: "#fff",
+  }}
+>
+  {/* Breadcrumbs Section */}
+  <Box
+    className="breadcrumbs"
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      padding: "8px 16px",
+      backgroundColor: "",
+      borderRadius: 1,
+      justifyContent: { xs: "center", md: "flex-start" },
+    }}
+  >
+    <div className="breadcrumbs__content">
+      <span property="itemListElement" typeof="ListItem">
+        <Link
+          property="item"
+          typeof="WebPage"
+          title="Go to Home."
+          href="/"
+          className="home"
+        >
+          <span
+            style={{
+              color: "#2563eb",
+            }}
+            property="name"
+          >
+            Home
           </span>
-          &nbsp;&gt;&nbsp;
-          <span property="itemListElement" typeof="ListItem">
-            <span property="name" className="post post-page current-item" style={{ color: "#525355" }}>
-              Global Security Tips
-            </span>
-          </span>
-        </div>
-      </Box>
+        </Link>
+      </span>
+      &nbsp;&gt;&nbsp;
+      <span property="itemListElement" typeof="ListItem">
+        <span
+          property="name"
+          className="post post-page current-item"
+          style={{ color: "#525355" }}
+        >
+          Global Security Tips
+        </span>
+      </span>
+    </div>
+  </Box>
 
-      <Box sx={{ marginTop: "16px", marginBottom: "8px", color: "#525355" }}>
-        <Typography variant="h2" sx={{ fontWeight: "bold", paddingLeft: "20px", fontSize: { xs: "1.5rem", sm: "1.5rem", md: "2.2rem", lg: "3rem" } }}>
-          The best online banking
-        </Typography>
+  {/* Header Section */}
+{/* Header Section */}
+<Box
+  sx={{
+    marginTop: "16px",
+    marginBottom: "8px",
+    color: "#525355",
+    textAlign: { xs: "center", md: "left" },
+    padding: { xs: "0 1rem", sm: "0 2rem" }, // Padding for better spacing on smaller screens
+  }}
+>
+  <Typography
+    variant="h2"
+    sx={{
+      fontWeight: "bold",
+      paddingLeft: { xs: "0", md: "20px" },
+      fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem", lg: "3rem" },
+    }}
+  >
+    The best online banking
+  </Typography>
 
-        <Box sx={{ display: "flex", justifyContent: isSmallScreen ? "center" : "space-between", flexDirection: isSmallScreen ? "column" : "row", gap: isSmallScreen ? "2rem" : "0", margin: "3.5rem auto", width: isSmallScreen ? "90%" : "70%" }}>
-          {securityTips.map((tip, index) => (
-            <Box key={index} sx={{ position: "relative", textAlign: "center", top: index === 1 ? "2rem" : index === 2 ? "4rem" : "0" }}>
-              <Image className="logo" src={tip.src} alt={tip.alt} width={170} height={140} />
-              <Typography>{tip.text}</Typography>
-            </Box>
-          ))}
+  {/* Tips Section */}
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: { xs: "center", md: "space-between" },
+      flexDirection: { xs: "column", md: "row" },
+      gap: { xs: "2rem", md: "1.5rem" },
+      margin: "3.5rem auto",
+      width: { xs: "90%", sm: "85%", md: "70%" },
+    }}
+  >
+    {securityTips.map((tip, index) => (
+      <Box
+        key={index}
+        sx={{
+          position: "relative",
+          textAlign: "center",
+          padding: "1rem",
+          borderRadius: "8px",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          transition: "transform 0.3s ease, box-shadow 0.3s ease",
+          "&:hover": {
+            transform: "scale(1.05)",
+            boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.2)",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            position: "relative",
+            width: { xs: "100%", sm: "80%", md: "70%" },
+            margin: "0 auto",
+            borderRadius: "8px",
+            overflow: "hidden",
+          }}
+        >
+          <Image
+            className="logo"
+            src={tip.src}
+            alt={tip.alt}
+            layout="responsive" // Ensures the image adapts to the container's width
+            width={170}
+            height={140}
+            style={{
+              objectFit: "contain", // Ensures the image maintains its aspect ratio
+              borderRadius: "8px", // Adds rounded corners to the image
+            }}
+          />
         </Box>
+        <Typography
+          sx={{
+            marginTop: "1rem",
+            fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+            fontWeight: "medium",
+            color: "#333",
+          }}
+        >
+          {tip.text}
+        </Typography>
       </Box>
+    ))}
+  </Box>
+</Box>
 
-      <SecurityBox />
-    </Box>
+
+  <SecurityBox />
+</Box>
+
   );
 };
 

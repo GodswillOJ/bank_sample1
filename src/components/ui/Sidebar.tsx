@@ -30,40 +30,53 @@ import {
 
 
   
-const Sidebar = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
-  <div
-    className={`fixed top-0 left-0 h-full w-3/4 max-w-sm bg-gray-800 z-50 transition-transform duration-300 ease-in-out ${
-      isOpen ? "translate-x-0" : "-translate-x-full"
-    } lg:hidden`} // Hidden for large screens
-  >
-    <div className="p-4 text-right">
-      <button onClick={onClose} className="text-yellow-400 text-xl font-bold">
-        &times;
-      </button>
+  const Sidebar = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => (
+    <div
+      className={`fixed top-0 left-0 h-full w-3/4 max-w-sm bg-gray-800 z-50 transition-transform duration-300 ease-in-out ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } lg:block lg:translate-x-0`} // Visible on large screens, hidden on small
+    >
+      <div className="p-4 text-right">
+        <button onClick={onClose} className="text-yellow-400 text-3xl font-bold">
+          &times;
+        </button>
+      </div>
+      <ul className="text-gray-200 text-lg p-4 space-y-6">
+        <li>
+          <Link href="/sign-in" className="block hover:text-yellow-300 transition duration-200">
+            Login
+          </Link>
+        </li>
+        <li>
+          <Link href="/online-banking" className="block hover:text-yellow-300 transition duration-200">
+            Secure Online Hub
+          </Link>
+        </li>
+        <li>
+          <Link href="/private-banking" className="block hover:text-yellow-300 transition duration-200">
+            Exclusive Private Banking
+          </Link>
+        </li>
+        <li>
+          <Link href="/straight2bank" className="block hover:text-yellow-300 transition duration-200">
+            Instant Transactions
+          </Link>
+        </li>
+        <li>
+          <Link href="/local-sites" className="block hover:text-yellow-300 transition duration-200">
+            Local Services
+          </Link>
+        </li>
+        <li>
+          <Link href="/contact-us" className="block hover:text-yellow-300 transition duration-200">
+             Contact Us
+          </Link>
+        </li>
+      </ul>
     </div>
-    <ul className="text-dull-yellow text-lg p-4 space-y-4">
-      <li>
-        <Link href="/sign-in">Sign In</Link>
-      </li>
-      <li className="hover:text-yellow-300">
-        <Link href="/sign-in">Online Banking</Link>
-      </li>
-      <li className="hover:text-yellow-300">
-        <Link href="/sign-in">Private Banking Online</Link>
-      </li>
-      <li className="hover:text-yellow-300">
-        <Link href="/sign-in">Straight2bank</Link>
-      </li>
-      <li className="hover:text-yellow-300">
-        <Link href="/sign-in">Local Sites</Link>
-      </li>
-      <li className="hover:text-yellow-300">
-        <Link href="/sign-in">Contact Us</Link>
-      </li>
-    </ul>
-  </div>
-);
-
+  );
+  
+  
 const Sidebar2 = ({
   isOpen,
   toggleSidebar,

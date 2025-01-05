@@ -19,21 +19,18 @@ const HeaderBox = ({ title, subtext, backgroundImage }: HeaderBoxProps) => {
   }, [backgroundImage.length]);
 
   return (
-    <div
-      className="header-box"
-      style={{
-        backgroundImage: `url(${backgroundImage[currentIndex]})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        transition: "background-image 1s ease-in-out",
-        minHeight: "600px", // Adjust the height as needed
-      }}
-    >
-      <div className="hero_text">
-        <h1 className="header-box-title">{title}</h1>
-        <p className="header-box-subtext">{subtext}</p>
+      <div
+        className="header-box"
+        style={{
+          backgroundImage: `url(${backgroundImage[currentIndex]})`,
+        }}
+      >
+        <div className="hero_text">
+          <h1 className="header-box-title">{title}</h1>
+          <p className="header-box-subtext">{subtext}</p>
+        </div>
       </div>
-    </div>
+
   );
 };
 

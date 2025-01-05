@@ -256,7 +256,6 @@ nav .first-box .first_box_menu li a:hover {
 
 
 /* header-box.css */
-
 .header-box {
   position: relative;
   display: flex;
@@ -265,11 +264,12 @@ nav .first-box .first_box_menu li a:hover {
   align-items: center;
   text-align: center;
   width: 100%;
-  color: white; /* Ensures child text stays white */
+  color: white;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 600px;
+  min-height: 50vh; /* Adjusts based on screen height */
+  transition: background-image 1s ease-in-out;
 }
 
 .header-box::before {
@@ -277,41 +277,78 @@ nav .first-box .first_box_menu li a:hover {
   position: absolute;
   inset: 0;
   z-index: 1;
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
 }
 
 .hero_text {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative; /* Changed from absolute for better alignment */
   width: 100%;
-  height: 100%; /* Ensures it takes the full size of the parent container */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  padding-left: 30px;
-  background: rgba(0, 0, 0, 0.4); /* Dark RGBA overlay */
-  z-index: 1; /* Ensure it stays above other elements */
-  color: #fff; /* Ensures text remains white */
-}
-
-
-.header-box-title,
-.header-box-subtext {
-  z-index: 2; /* Ensure text stays above overlay */
-}
-.header-box-subtext {
-  z-index: 2; /* Ensure text stays above overlay */
-  color: #dfe0e2;
+  max-width: 1200px; /* Limits the content width on larger screens */
+  padding: 1rem 2rem; /* Adjust padding for responsiveness */
+  z-index: 2;
+  text-align: center; /* Center text by default */
 }
 
 .header-box-title {
-  font-size: 2.25rem; /* 4xl */
+  font-size: 2rem; /* Default size */
   font-weight: bold;
-  color: #fff; /* Explicitly set text color */
   margin-bottom: 1rem;
-  z-index: 2; /* Above the overlay */
+  color: #fff;
 }
+
+.header-box-subtext {
+  font-size: 1.25rem; /* Default size */
+  color: #dfe0e2;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .header-box {
+    min-height: 60vh; /* Slightly taller for medium screens */
+  }
+
+  .header-box-title {
+    font-size: 1.75rem; /* Slightly smaller font */
+  }
+
+  .header-box-subtext {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-box {
+    min-height: 70vh; /* Taller for smaller screens */
+  }
+
+  .hero_text {
+    padding: 1rem; /* Reduce padding for smaller screens */
+    text-align: left; /* Align text to the left for better reading */
+  }
+
+  .header-box-title {
+    font-size: 1.5rem; /* Smaller font for titles */
+  }
+
+  .header-box-subtext {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-box {
+    min-height: 80vh; /* Even taller for small screens */
+  }
+
+  .header-box-title {
+    font-size: 1.25rem; /* Further reduced font size */
+  }
+
+  .header-box-subtext {
+    font-size: 0.8rem;
+  }
+}
+
 
 .hamburger_container{
   position: relative;
@@ -539,36 +576,6 @@ main{
   }
 }
 
-
-
-@media (min-width: 768px) {
-  .header-box-title {
-    font-size: 3rem; /* 5xl for medium screens and up */
-  }
-}
-
-.header-box-subtext {
-  font-size: 1.125rem; /* lg */
-  z-index: 2; /* Above the overlay */
-}
-@media  (max-width: 769px) {
-  .hero_text {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.5);
-    width: calc(80% - 20px);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgb(248, 248, 249); /* Shadow for elevation */
-    height: 300px;
-    margin: 0 50px;
-    bottom: 0;
-    top: 18rem;
-  }
-}
-@media (min-width: 768px) {
-  .header-box-subtext {
-    font-size: 1.25rem; /* xl for medium screens and up */
-  }
-}
 
 @media  (max-width: 1219px) {
   .hamburger-menu{
@@ -1097,4 +1104,19 @@ main{
     text-transform: capitalize;
   }
 
+}
+
+
+.Box_2 {
+  padding: 1rem;
+}
+
+.mobile-layout {
+  flex-direction: column;
+  text-align: center;
+}
+
+.desktop-layout {
+  flex-direction: row;
+  text-align: left;
 }

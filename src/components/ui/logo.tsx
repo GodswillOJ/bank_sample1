@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
+import {Box, useMediaQuery }from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandPointLeft
  } from "@fortawesome/free-solid-svg-icons";
@@ -140,6 +140,7 @@ const Logo3 = () => {
 
 const BOX2 = () => {
   const [activeList, setActiveList] = useState<number | null>(null);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const handleClick = (index: number) => {
     setActiveList(activeList === index ? null : index); // Toggle active state
@@ -174,28 +175,39 @@ const BOX2 = () => {
   ];
 
   return (
-    <Box className="Box_2">
+    <Box className={`Box_2 ${isMobile ? "mobile-layout" : "desktop-layout"}`}>
       <ul className="list_ul">
-        <div className="main-content-container">
-            <div className="image-container">
-              <Image src="/icons/images0.png" alt="Online security" width={400} height={300} className="image" />
-            </div>
-            <div className="text-container">
-              <h2>Online security</h2>
-              <p>We are committed to helping our customers manage their money safely on the go. Discover some of the measures you can take to safeguard your account information when using your mobile phone:</p>
-            </div>
+        <div className="main-content-container flex flex-col md:flex-row">
+          <div className="image-container mx-auto md:mx-0">
+            <Image
+              src="/icons/images0.png"
+              alt="Online security"
+              width={isMobile ? 200 : 400}
+              height={isMobile ? 150 : 300}
+              className="image"
+            />
           </div>
+          <div className="text-container mt-4 md:mt-0 md:ml-6">
+            <h2 className="text-xl md:text-2xl font-semibold">Online security</h2>
+            <p className="text-sm md:text-base">
+              We are committed to helping our customers manage their money safely on the go. Discover some of the measures you can take to safeguard your account information when using your mobile phone:
+            </p>
+          </div>
+        </div>
 
-        {listItems2.map((item, index) => (          
-          <li key={index} className="li">
-            <div className="li-content">
-              <span>{item.title}</span>
-              <button onClick={() => handleClick(index)} className="arrow-button">
+        {listItems2.map((item, index) => (
+          <li key={index} className="li my-2">
+            <div className="li-content flex justify-between items-center">
+              <span className="text-sm md:text-base">{item.title}</span>
+              <button
+                onClick={() => handleClick(index)}
+                className="arrow-button"
+              >
                 <FontAwesomeIcon icon={faHandPointLeft} />
               </button>
             </div>
             {activeList === index && (
-              <div className="sub-container">
+              <div className="sub-container p-2 bg-gray-100 rounded-md">
                 {item.content}
               </div>
             )}
@@ -207,42 +219,37 @@ const BOX2 = () => {
 };
 
 const BOX3 = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <Box className="Box_2">
-      <ul className="list_ul">
-        <div className="main-content-container" style={{
-          display: "block"
-        }}>
-            <Box sx={{
-              display: "flex"
-            }}>
-              <div className="image-container">
-                <Image src="/icons/images0.png" alt="Online security" width={400} height={300} className="image" />
-              </div>
-              <div className="text-container">
-                <h2>We are here to protect you:</h2>
-                <p>Scammers use a variety of tactics to trick potential victims into revealing sensitive information, making fraudulent payments or allowing unauthorised access to accounts.</p>
-              </div>
-            </Box>
-            <Box sx={{
-              display: "block"
-            }}>
-              <div className="text-container">
-                <h2>Reporting social engineering threats</h2>
-                <p>If you have received a suspicious email (phishing), call (vishing) or text message (smishing) targeting you as a customer of Standard Chartered, or identified a suspicious social media account claiming to represent Standard Chartered, report it to us immediately by emailing phishing@sc.com. In your report, please share as many details as you can to help us with our investigations e.g., sender details, attachments, screenshots and links.</p>
-              </div>
-
-              <div className="text-container">
-                <h2>Reporting other security concerns</h2>
-                <p>For anything urgent (e.g., to report a suspected fraudulent transaction), call us immediately using the number on the back of your bank card. To report any security issues related to our online services and applications, please contact security@sc.com.</p>
-              </div>
-            </Box>
-          </div>
-      </ul>
+    <Box className={`Box_3 ${isMobile ? "mobile-layout" : "desktop-layout"}`}>
+      <div className="main-content-container flex flex-col md:flex-row">
+        <Box className="image-container mx-auto md:mx-0">
+          <Image
+            src="/icons/images0.png"
+            alt="Online security"
+            width={isMobile ? 200 : 400}
+            height={isMobile ? 150 : 300}
+            className="image"
+          />
+        </Box>
+        <Box className="text-container mt-4 md:mt-0 md:ml-6">
+          <h2 className="text-xl md:text-2xl font-semibold">We are here to protect you:</h2>
+          <p className="text-sm md:text-base">
+            Scammers use a variety of tactics to trick potential victims into revealing sensitive information, making fraudulent payments, or allowing unauthorized access to accounts.
+          </p>
+        </Box>
+      </div>
+      <Box className="text-container mt-4">
+        <h2 className="text-lg md:text-xl font-semibold">Reporting social engineering threats</h2>
+        <p className="text-sm md:text-base">
+          If you have received a suspicious email (phishing), call (vishing), or text message (smishing) targeting you as a customer of Standard Chartered, report it to us immediately by emailing phishing@sc.com.
+        </p>
+      </Box>
     </Box>
   );
 };
+
 
 const BOX4 = () => {
   const [activeList, setActiveList] = useState<number | null>(null);

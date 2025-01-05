@@ -52,13 +52,19 @@ const Navbar = () => {
       <div className="hidden lg:flex">
         <ul className="sign-in-menu space-x-4">
           <li>
-            <Link href="/sign-in">Online Banking</Link>
+            <Link href="/sign-in">
+             Bank Online
+            </Link>
           </li>
           <li>
-            <Link href="/sign-in">Private Banking Online</Link>
+            <Link href="/sign-in">
+              Secure online Hub
+            </Link>
           </li>
           <li>
-            <Link href="/sign-in">Straight2bank</Link>
+            <Link href="/sign-in">
+              Exclusive Private Banking
+            </Link>
           </li>
           <li>
             {isLoggedIn ? (
@@ -66,7 +72,7 @@ const Navbar = () => {
                 Logout
               </button>
             ) : (
-              <Link href="/sign-in">Log In</Link>
+              <Link href="/sign-in">Login</Link>
             )}
           </li>
           <li>
