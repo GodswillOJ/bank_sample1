@@ -34,7 +34,7 @@ import {
     <div
       className={`fixed top-0 left-0 h-full w-3/4 max-w-sm bg-gray-800 z-50 transition-transform duration-300 ease-in-out ${
         isOpen ? "translate-x-0" : "-translate-x-full"
-      } lg:block lg:translate-x-0`} // Visible on large screens, hidden on small
+      } lg:hidden`} // Hidden on large screens
     >
       <div className="p-4 text-right">
         <button onClick={onClose} className="text-yellow-400 text-3xl font-bold">
@@ -69,7 +69,7 @@ import {
         </li>
         <li>
           <Link href="/contact-us" className="block hover:text-yellow-300 transition duration-200">
-             Contact Us
+            Contact Us
           </Link>
         </li>
       </ul>
